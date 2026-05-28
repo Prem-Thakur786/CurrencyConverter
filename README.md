@@ -1,16 +1,88 @@
-# React + Vite
+# 💱 Currency Converter
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A real-time currency converter built with **React 19** and **Vite**, styled using **Tailwind CSS**. Converts between 150+ world currencies instantly as you type — no button click needed.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## ✨ Features
 
-## React Compiler
+- 🔄 **Real-time conversion** — updates live as you type
+- 🔃 **Swap currencies** — instantly flip From ↔ To
+- 🌍 **150+ currencies** — powered by live exchange rate API
+- 🇵🇰 **Defaults to USD → PKR**
+- 🎨 **Clean glassmorphism UI** with Tailwind CSS
+- ♿ **Accessible** — labels linked to inputs via `useId`
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 🛠️ Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+| Tech | Purpose |
+|------|---------|
+| React 19 | UI & state management |
+| Vite | Build tool & dev server |
+| Tailwind CSS v4 | Styling |
+| `useMemo` | Derived conversion (no extra state) |
+| `useEffect` | Fetching live exchange rates |
+| [Fawaz Ahmed Currency API](https://github.com/fawazahmed0/exchange-api) | Free live exchange rates |
+
+---
+
+## 📁 Project Structure
+
+```
+src/
+├── components/
+│   ├── InputBox.jsx     # Reusable amount + currency selector input
+│   └── index.js         # Named exports
+├── hooks/
+│   └── useCurrencyInfo.js  # Custom hook — fetches live rates
+├── App.jsx              # Main app logic
+├── main.jsx             # React entry point
+└── index.css            # Global styles
+```
+
+---
+
+## 🚀 Getting Started
+
+```bash
+# Install dependencies
+npm install
+
+# Start dev server
+npm run dev
+
+# Build for production
+npm run build
+```
+
+---
+
+## 🔌 API Used
+
+```
+https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/{currency}.json
+```
+
+- Free & no API key required
+- Updates daily with latest exchange rates
+- 150+ currencies supported
+
+---
+
+## 🧠 How It Works
+
+1. `useCurrencyInfo(from)` fetches live rates for the selected **From** currency
+2. `convertedAmount` is computed via `useMemo` — recalculates instantly on amount or currency change
+3. Swap button flips both currencies and sets the converted amount as the new input
+
+---
+
+## 📦 Dependencies
+
+```json
+"react": "^19.2.6",
+"tailwindcss": "^4.3.0",
+"@tailwindcss/vite": "^4.3.0"
+```
